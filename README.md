@@ -136,4 +136,3 @@ The empirical distribution from this hypothesis test, along with the observed st
 
 
 The resulting p-value is 0.018, which is less than the p-value cutoff of 0.05. This result shows a moderate level of statistical significance, meaning that 5% of the time, the null hypothesis for this hypothesis test is incorrectly rejected. Overall, we can see that there is some chance that recipes with 15 or more ingredients tend to have higher ratings compared to recipes in general.
-___
