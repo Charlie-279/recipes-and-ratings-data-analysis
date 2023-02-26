@@ -13,6 +13,8 @@ This project makes use of two datasets from food.com, one containing recipes and
 - 'n_ingredients': number of ingredients used in the recipe
 - 'rating': rating for the review of the recipe
 - 'recipe_avg_rating': average rating of each recipe
+- 'user_id': ID of the user who created the review
+- 'review': text message of the review
 
 ## Cleaning and EDA
 
@@ -87,10 +89,28 @@ The 'rating' column originally used values of 0 to mark missingness rather than 
 
 ![Reviews with Missing Ratings](assets/rating_missing.png)
 
-Although we can now see the what causes missing values in the 'rating' column, this is not enough evidence to prove whether these missing values are NMAR. However, it is possible that food.com provides a choice for the reviewer to leave out their rating, which would explain the missingness. To further investigate the missingness of the 'rating' column, I performed several permutation tests to see whether the missingness of the 'rating' column is dependent on other columns.
+Although we can now see the what causes missing values in the 'rating' column, this is not enough evidence to prove whether these missing values are NMAR. However, it is possible that food.com provides a choice for the reviewer to leave out their rating, which would explain the missingness. 
 
+To further investigate the missingness of the 'rating' column, I performed several permutation tests to see whether the missingness of the 'rating' column is dependent on other columns. These permutation tests used the TVD (total variation distance) as a test statistic. The null hypothesis for these tests is that the missingness of the 'rating' column does not depend on the other column, and the alternative hypothesis is that the missingness of the 'rating' column depends on the other column.
+
+One column that I analyzed the dependency of the 'rating' column's missingness on was the 'user_id' column. I believed that the 'rating' column may be dependent on the 'user_id' column because it is reasonable that certain users who leave several reviews across the site may be more prone to excluding their star rating along with their review. Here is the empirical distribution of this permutation test:
+
+---------------
+
+As we can see, the observed TVD (marked as the red line) for this test is nowhere near the empirical distribution (marked as the blue bars) of the permutation test, resulting in a p-value of 0.0, allowing the null hypothesis to be rejected. 
+
+While searching for a column that the missingness of the 'rating' column does not depend on, I ran into an issue. I completed the same permutation test on the majority of the columns in the DataFrame, and there were no columns in which the p-value was any result other than 0.0. The primary reason for this is likely that the left merge of the two original datasets resulted in many duplicate values, since all of the columns in the raw recipes dataset are repeated for each review of the recipe. 
+
+There is only one column in the whole DataFrame which has few duplicate values, which is the 'review' column. Upon permutation testing, the 'review' column is the one for which the observed TVD was the closest to the empirical distribution was the. In theory, this column should not have any impact on the missingness of the review because almost every value in the column is unique, and the missingness of this column is trivial. Here is the empirical distribution of this permutation test:
+
+-----------
+
+In comparison to the permutation test for the 'user_id' column, the observed TVD is much closer to the empirical distribution. The p-value of this permutation test is also 0.0, also leading us to reject the null hypothesis.
+
+Since there are no columns in the dataset for which we fail to reject the null hypothesis, it is likely that the 'rating' column is NMAR. This would mean that the missingness of this column depends on the values of 'rating' themselves, which would be reasonable considering the result from the 'review' column permutation test. I believe that the missingness of the 'rating' column is dependent on the 'review' column because the vast majority of the few duplicate entries in the 'review' column likely correspond to either missing values of 'rating' or nonmissing values of 'rating'.
 
 
 ## Hypothesis Testing
 
+To address the original investigation, 
 ___
