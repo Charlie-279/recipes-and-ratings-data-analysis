@@ -38,7 +38,7 @@ Here is a histogram showing the distribution of n_ingredients, with each bar rep
 
 Here is a line plot showing the average rating of recipes per year. There is some variation in this plot, particularly in the sharp fall in ratings in the years 2016 and 2017; however, there does not appear to be a trend as the years go by.
 
-<iframe src="assets/avg-rating-per-year-histogram.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/avg-rating-per-year.html" width=800 height=600 frameBorder=0></iframe>
 
 Lastly, I grouped the data by the number of ingredients for each entry in the DataFrame, and aggregated it using the mean function to find the mean of the average rating for each number of ingredients.
 
