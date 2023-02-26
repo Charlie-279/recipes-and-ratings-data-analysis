@@ -11,8 +11,9 @@ My analysis is centered around the question: Do recipes with 15 or more ingredie
 
 This project makes use of two datasets from food.com, one containing recipes and the other containing reviews and ratings submitted for the recipes in the first dataset. These two datasets were then left merged into one larger dataset, which makes it easier to work with and to identify which ratings correspond to wihch recipes. This resulting dataset contains 234429 rows and 26 columns, and but only some of the columns are relevant to my analysis. These columns are:
 - 'id': ID of each recipe
-- 'recipe_avg_rating': average rating of each recipe
 - 'n_ingredients': number of ingredients used in the recipe
+- 'rating': rating for the review of the recipe
+- 'recipe_avg_rating': average rating of each recipe
 
 ## Cleaning and EDA
 
@@ -22,13 +23,13 @@ Next, I added a column named 'recipe_avg_rating', which assigns the average rati
 
 The first few rows of the resulting DataFrame for the colmuns relevant to this investigation are shown here:
 
-|     id |   n_ingredients |   recipe_avg_rating |
-|-------:|----------------:|--------------------:|
-| 333281 |               9 |                   4 |
-| 453467 |              11 |                   5 |
-| 306168 |               9 |                   5 |
-| 306168 |               9 |                   5 |
-| 306168 |               9 |                   5 |
+|     id |   n_ingredients |   rating |   recipe_avg_rating |
+|-------:|----------------:|---------:|--------------------:|
+| 333281 |               9 |        4 |                   4 |
+| 453467 |              11 |        5 |                   5 |
+| 306168 |               9 |        5 |                   5 |
+| 306168 |               9 |        5 |                   5 |
+| 306168 |               9 |        5 |                   5 |
 
 To find potential associations within the data to explore, I created several plots and aggregated the data across certain columns. Two of these plots are shown below, along with one . There are 
 
@@ -40,7 +41,7 @@ Here is a line plot showing the average rating of recipes per year. There is som
 
 <iframe src="assets/avg-rating-per-year.html" width=800 height=600 frameBorder=0></iframe>
 
-Lastly, I grouped the data by the number of ingredients for each entry in the DataFrame, and aggregated it using the mean function to find the mean of the average rating for each number of ingredients.
+Lastly, I grouped the data by the number of ingredients for each entry in the DataFrame, and aggregated it using the mean function to find the mean of the average rating for each number of ingredients. We can see that the last few rows of this grouped DataFrame have the highest average ratings, which is likely because there are very few recipes with such a high amount of ingredients, allowing for less variation in the average ratings for these recipes.
 
 |   n_ingredients |   recipe_avg_rating |
 |----------------:|--------------------:|
@@ -80,6 +81,13 @@ Lastly, I grouped the data by the number of ingredients for each entry in the Da
 |              37 |             5       |
 
 ## Assessment of Missingness
+
+To assess the missingness of the recipes dataset, I began by looking at the DataFrame to have a rough idea of which columns may be NMAR (not missing at random). Upon checking the null values of each column, the only ones with nontrivial missingness are the 'rating' and 'recipe_avg_rating' columns. Since the 'recipe_avg_rating' column was calculated from the 'rating' column, it is not part of the original data acquired for this investigation. Therefore, the only column that may potentially be NMAR is the 'rating' column. 
+
+The 'rating' column originally used values of 0 to mark missingness rather than values of NaN, and the reason for these values being missing is that the reviews corresponding to these ratings do not have a star rating displayed. This can be seen below, where the first review of the three shown displays a star rating of 4, whereas the second and third reviews do not display a star rating. These specific reviews, upon investigation of the dataset, have missing values:
+
+![Reviews with Missing Ratings](rating_missing.png)
+
 
 ## Hypothesis Testing
 
