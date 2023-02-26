@@ -95,7 +95,8 @@ To further investigate the missingness of the 'rating' column, I performed sever
 
 One column that I analyzed the dependency of the 'rating' column's missingness on was the 'user_id' column. I believed that the 'rating' column may be dependent on the 'user_id' column because it is reasonable that certain users who leave several reviews across the site may be more prone to excluding their star rating along with their review. Here is the empirical distribution of this permutation test:
 
----------------
+<iframe src="assets/user-id-permutation.html" width=800 height=600 frameBorder=0></iframe>
+
 
 As we can see, the observed TVD (marked as the red line) for this test is nowhere near the empirical distribution (marked as the blue bars) of the permutation test, resulting in a p-value of 0.0, allowing the null hypothesis to be rejected. 
 
@@ -103,7 +104,8 @@ While searching for a column that the missingness of the 'rating' column does no
 
 There is only one column in the whole DataFrame which has few duplicate values, which is the 'review' column. Upon permutation testing, the 'review' column is the one for which the observed TVD was the closest to the empirical distribution was the. In theory, this column should not have any impact on the missingness of the review because almost every value in the column is unique, and the missingness of this column is trivial. Here is the empirical distribution of this permutation test:
 
------------
+<iframe src="assets/review-permutation.html" width=800 height=600 frameBorder=0></iframe>
+
 
 In comparison to the permutation test for the 'user_id' column, the observed TVD is much closer to the empirical distribution. The p-value of this permutation test is also 0.0, also leading us to reject the null hypothesis.
 
@@ -112,5 +114,26 @@ Since there are no columns in the dataset for which we fail to reject the null h
 
 ## Hypothesis Testing
 
-To address the original investigation, 
+To address the original investigation, I completed a hypothesis test to address the original question: Do recipes with 15 or more ingredients tend to have higher ratings?
+
+To complete this hypothesis test, I first needed to establish a null hypothesis, an alternative hypothesis, a test statistic, and a p-value cutoff:
+
+Null Hypothesis: Recipes with 15 or more ingredients have the same average ratings compared to the whole dataset.
+- This null hypothesis is appropriate for the investigation because it sets a specific probability model that can be simulated under, and it is states that any observed differences between the average ratings for recipes with 15 or more ingredients and recipes in general are due to random chance.
+
+Alternative Hypothesis: Recipes with 15 or more ingredients have higher ratings compared to the whole dataset. 
+- This alternative hypothesis is appropriate for the investigation because it provides a different viewpoint to the null hypothesis, and it has a "direction," which is that recipes with 15 or more ingredients are higher rated, rather than lower rated. It states that any observed differences are not due to random chance.
+
+Test Statistic: Difference in group means
+- Using difference in group means as a test statistic is appropriate because we are comparing the mean of the average ratings of two groups, which are recipes with 15 or more ingredients and recipes in general.
+
+P-value cutoff: 0.05 (statistically significant)
+- This p-value cutoff is appropriate because it demonstrates a moderate but not extreme level of statistical significance.
+
+The empirical distribution from this hypothesis test, along with the observed statistic, are as shown:
+
+<iframe src="assets/hypothesis-test.html" width=800 height=600 frameBorder=0></iframe>
+
+
+The resulting p-value is 0.018, which is less than the p-value cutoff of 0.05. This result shows a moderate level of statistical significance, meaning that 5% of the time, the null hypothesis for this hypothesis test is incorrectly rejected. Overall, we can see that there is some chance that recipes with 15 or more ingredients tend to have higher ratings compared to recipes in general.
 ___
