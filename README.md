@@ -3,7 +3,6 @@ A data analysis project concerning recipes and ratings on food.com, for DSC 80 a
 
 By: Charlie Gillet (cgillet@ucsd.edu)
 
----
 
 ## Introduction
 
@@ -84,9 +83,12 @@ Lastly, I grouped the data by the number of ingredients for each entry in the Da
 
 To assess the missingness of the recipes dataset, I began by looking at the DataFrame to have a rough idea of which columns may be NMAR (not missing at random). Upon checking the null values of each column, the only ones with nontrivial missingness are the 'rating' and 'recipe_avg_rating' columns. Since the 'recipe_avg_rating' column was calculated from the 'rating' column, it is not part of the original data acquired for this investigation. Therefore, the only column that may potentially be NMAR is the 'rating' column. 
 
-The 'rating' column originally used values of 0 to mark missingness rather than values of NaN, and the reason for these values being missing is that the reviews corresponding to these ratings do not have a star rating displayed. This can be seen below, where the first review of the three shown displays a star rating of 4, whereas the second and third reviews do not display a star rating. These specific reviews, upon investigation of the dataset, have missing values:
+The 'rating' column originally used values of 0 to mark missingness rather than values of NaN, and the cause for these values being missing is that the reviews corresponding to these ratings do not have a star rating displayed. This can be seen below, where the first review of the three shown displays a star rating of 4, whereas the second and third reviews do not display a star rating. These specific reviews, upon investigation of the dataset, have missing values:
 
-![Reviews with Missing Ratings](rating_missing.png)
+![Reviews with Missing Ratings](assets/rating_missing.png)
+
+Although we can now see the what causes missing values in the 'rating' column, this is not enough evidence to prove whether these missing values are NMAR. However, it is possible that food.com provides a choice for the reviewer to leave out their rating, which would explain the missingness. To further investigate the missingness of the 'rating' column, I performed several permutation tests to see whether the missingness of the 'rating' column is dependent on other columns.
+
 
 
 ## Hypothesis Testing
