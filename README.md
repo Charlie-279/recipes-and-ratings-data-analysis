@@ -30,8 +30,15 @@ The first few rows of the resulting DataFrame for the colmuns relevant to this i
 | 306168 |               9 |                   5 |
 | 306168 |               9 |                   5 |
 
+To find potential associations within the data to explore, I created several plots, two of which are shown below.
 
-For website:
+Here is a histogram showing the distribution of n_ingredients, with each bar representing the number of entries in the DataFrame containing that number of ingredients. We can see that most of the recipes in the dataset have around 5 to 10 ingredients, with the mode of the data being 8 ingredients.
+
+<iframe src="assets/n-ingredients-histogram.html" width=800 height=600 frameBorder=0></iframe>
+
+Here is a line plot showing the average rating of recipes per year. There is some variation in this plot, particularly in the sharp fall in ratings in the years 2016 and 2017; however, there does not appear to be a trend as the years go by.
+
+<iframe src="assets/avg-rating-per-year-histogram.html" width=800 height=600 frameBorder=0></iframe>
 
 ## Assessment of Missingness
 
