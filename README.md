@@ -20,7 +20,8 @@ To clean the dataset, I first left merged the raw recipes and raw interactions D
 
 Next, I added a column named 'recipe_avg_rating', which assigns the average rating of each recipe to its corresponding row. I then took each value in the 'nutrition' column, stored as a string, and converted it into 7 individual columns, one for each nutritional category, stored as floats. Since the dates in the 'submitted' and 'date' columns were in string form, I converted these columns to the datetime data type so that operations could be performed on them. Following this, I added numeric year and month columns so they would be easier to perform operations with.
 
-The first few rows of the resulting DataFrame are shown here:
+The first few rows of the resulting DataFrame for the colmuns relevant to this investigation are shown here:
+
 |     id |   n_ingredients |   recipe_avg_rating |
 |-------:|----------------:|--------------------:|
 | 333281 |               9 |                   4 |
