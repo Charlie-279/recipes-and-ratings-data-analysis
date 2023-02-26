@@ -30,7 +30,7 @@ The first few rows of the resulting DataFrame for the colmuns relevant to this i
 | 306168 |               9 |                   5 |
 | 306168 |               9 |                   5 |
 
-To find potential associations within the data to explore, I created several plots, two of which are shown below.
+To find potential associations within the data to explore, I created several plots and aggregated the data across certain columns. Two of these plots are shown below, along with one . There are 
 
 Here is a histogram showing the distribution of n_ingredients, with each bar representing the number of entries in the DataFrame containing that number of ingredients. We can see that most of the recipes in the dataset have around 5 to 10 ingredients, with the mode of the data being 8 ingredients.
 
@@ -39,6 +39,45 @@ Here is a histogram showing the distribution of n_ingredients, with each bar rep
 Here is a line plot showing the average rating of recipes per year. There is some variation in this plot, particularly in the sharp fall in ratings in the years 2016 and 2017; however, there does not appear to be a trend as the years go by.
 
 <iframe src="assets/avg-rating-per-year-histogram.html" width=800 height=600 frameBorder=0></iframe>
+
+Lastly, I grouped the data by the number of ingredients for each entry in the DataFrame, and aggregated it using the mean function to find the mean of the average rating for each number of ingredients.
+
+|   n_ingredients |   recipe_avg_rating |
+|----------------:|--------------------:|
+|               1 |             4.82175 |
+|               2 |             4.73734 |
+|               3 |             4.71927 |
+|               4 |             4.69541 |
+|               5 |             4.70567 |
+|               6 |             4.67634 |
+|               7 |             4.66519 |
+|               8 |             4.65668 |
+|               9 |             4.66115 |
+|              10 |             4.65947 |
+|              11 |             4.67827 |
+|              12 |             4.67418 |
+|              13 |             4.68648 |
+|              14 |             4.65688 |
+|              15 |             4.6792  |
+|              16 |             4.67425 |
+|              17 |             4.66918 |
+|              18 |             4.72167 |
+|              19 |             4.68489 |
+|              20 |             4.68485 |
+|              21 |             4.69057 |
+|              22 |             4.83328 |
+|              23 |             4.80406 |
+|              24 |             4.73785 |
+|              25 |             4.65741 |
+|              26 |             4.82769 |
+|              27 |             4.65238 |
+|              28 |             4.83844 |
+|              29 |             4.93088 |
+|              30 |             4.78125 |
+|              31 |             5       |
+|              32 |             5       |
+|              33 |             5       |
+|              37 |             5       |
 
 ## Assessment of Missingness
 
